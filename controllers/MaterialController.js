@@ -3,11 +3,11 @@ const Procedimento = require('../../models/configuracao/Procedimento');
 const TipoItem = require('../../models/configuracao/TipoItem');
 const Localizacao = require('../../models/configuracao/Localizacao'); 
 
-const EnumMaterial = require('../../helpers/EnumMaterial')
+const EnumMaterial = require('../../helpers/Enum/EnumMaterial');
 
 module.exports = class MaterialController {
     static async create(req, res){
-        const {nome, terceiro, fabricante, modelo, code, indicadoCaixa, valor, 
+        const {nome, terceiro, fabricante, modelo, code, indicadorCaixa, valor, 
              indicadorDisponivelSaida, status, dataCadastro, quantidadeEsterilizacoes, 
              procedimento,  tipoItem, itens, caixa, localizacao } = req.body;
 
@@ -66,7 +66,7 @@ module.exports = class MaterialController {
                     fabricante,
                     modelo,
                     caixa,
-                    indicadoCaixa,
+                    indicadorCaixa,
                     itens,
                     valor,
                     tipoItem,
@@ -90,7 +90,7 @@ module.exports = class MaterialController {
 
     static async show(req, res){
         try{
-            const materiais = await Material.find().populate("tipoItem").populate("procedimento").populate("localizacao");
+            const materiais = await Material.find().populate("tipoItem").populate("procedimento").populate("localizacao").populate("itens")
             return res.status(200).json({ materiais })
         }catch(error){
             return res.status(500).json({ message: error });
@@ -114,11 +114,9 @@ module.exports = class MaterialController {
     static async edit(req, res){
         const id = req.params.id;
         
-        const { material }  = req.body
-        const {nome, terceiro, fabricante, modelo, code, indicadoCaixa, valor, 
+        const {nome, terceiro, fabricante, modelo, code, indicadorCaixa, valor, 
             indicadorDisponivelSaida, status, dataCadastro, quantidadeEsterilizacoes, 
-            procedimento,  tipoItem,  localizacao } = material;
-        
+            procedimento,  tipoItem,  localizacao } = req.body;
             try{
                 const material = await Material.findOne({ _id: id});
                 if(!nome){
@@ -130,9 +128,9 @@ module.exports = class MaterialController {
                     material.terceiro = terceiro;
                 }
 
-                
-                if(typeof indicadoCaixa === "boolean"){
-                    material.indicadoCaixa = indicadoCaixa;
+              
+                if(typeof indicadorCaixa === "boolean"){
+                    material.indicadorCaixa = indicadorCaixa;
                 }
 
                 if(typeof indicadorDisponivelSaida === "boolean"){
@@ -141,6 +139,8 @@ module.exports = class MaterialController {
 
                 if(fabricante){
                   material.fabricante = fabricante;
+                }else {
+                    material.fabricante = ""
                 }
 
                 if(dataCadastro){
@@ -149,14 +149,20 @@ module.exports = class MaterialController {
 
                 if(modelo){
                     material.modelo = modelo;
+                  }else {
+                    material.modelo = ""
                   }
 
                   if(valor > 0){
                     material.valor = valor;
+                  }else {
+                    material.valor = 0;
                   }
 
                   if(quantidadeEsterilizacoes > 0){
                     material.quantidadeEsterilizacoes = quantidadeEsterilizacoes;
+                  }else {
+                    material.quantidadeEsterilizacoes = 0;
                   }
                 
                 if(!code){
@@ -177,7 +183,7 @@ module.exports = class MaterialController {
                 if(filterStatus.length === 0){
                     return res.status(422).json({ message: "O status é inválido"});
                 }
-                material.code = status;
+                material.code = code;
 
                 if(procedimento){
                     try{
@@ -227,11 +233,11 @@ module.exports = class MaterialController {
         const id = req.params.id;
         try{
             const material = await Material.findOne({ _id: id});
-
-            if(material.procedimento.length !== 0){
+            console.log(material)
+            if(material.procedimento){
                return res.status(422).json({ message: "Não é possível excluir material com procedimento vinculado"});
             }
-            
+          
            try{
                 await Material.findByIdAndDelete({ _id: id});
                 return res.status(200).json({ message: "Excluido com sucesso !"})

@@ -1,7 +1,7 @@
 const router = require('express').Router();
-const MaterialController = require('../../controllers/configuracao/MaterialController');
+const MaterialController = require('../controllers/MaterialController');
 
-const verifyToken = require('../../helpers/verify-token');
+const verifyToken = require('../helpers/verify-token');
 
 router.get('/', verifyToken, MaterialController.show);
 router.get('/:id', verifyToken, MaterialController.getMaterialById);

@@ -1,5 +1,6 @@
 const mongoose = require('../../db/conn');
 const { Schema } = mongoose;
+const EnumMaterial = require('../../helpers/Enum/EnumMaterial');
 
 const Material = mongoose.model(
     'Material', 
@@ -25,7 +26,7 @@ const Material = mongoose.model(
             type: String,
             required: true
         },
-        indicadoCaixa: {
+        indicadorCaixa: {
             type: Boolean,
             default: false,
         },
@@ -39,12 +40,7 @@ const Material = mongoose.model(
         },
         status: {
             type: String,
-            enum: ["SUJO", "SUJO/PRONTA", "SUJO/INCOMPLETA", "LIMPEZA INICIADA", 
-            "LIMPO","LIMPO/EST. TERCEIRO", "LIMPO/DESINFECTADO", "PREPARO INICIADO", "PREPARO INICIADO/DESINFECTADO",
-            "EMBALADO", "EMBALADO/LIBERADO", "ESTERILIZAÇÃO INICIADA", "ESTERILIZADO", "ESTERILIZADO/TERCEIRO",
-            "LIBERADO LIMPEZA", "LIBERADO PREPARO", "LIBERADO CC", "LIBERADO RECEBIMENTO", "EM MANUTENÇÃO", 
-            "RETIRADO TERCEIRO", "RECEBIMENTO PENDENTE", "ENTRADA C/C PENDENTE", "SAIDA C/C PENDENTE",
-            "LIBERADO PARA SETOR", "ROUPARIA", "ACESSORIO", "MATERIAL BANHO", "FINALIZADA"],
+            enum: EnumMaterial,
             required: true,
             allowNull: false
         },
