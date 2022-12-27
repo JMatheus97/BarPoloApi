@@ -3,6 +3,7 @@ const cors = require('cors');
 const app = express();
 const MesaRoutes = require('./routes/MesaRoutes');
 const UsuarioRoutes = require('./routes/UsuarioRoutes');
+const ProdutoRoutes = require('./routes/ProdutoRoutes');
 
 
 
@@ -18,6 +19,7 @@ app.use(express.static('public'));
 // Routes
 app.use('/users', UsuarioRoutes);
 app.use('/mesa', MesaRoutes);
+app.use('/produto', ProdutoRoutes);
 
 app.listen(5000);
 
