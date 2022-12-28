@@ -4,6 +4,7 @@ const app = express();
 const MesaRoutes = require('./routes/MesaRoutes');
 const UsuarioRoutes = require('./routes/UsuarioRoutes');
 const ProdutoRoutes = require('./routes/ProdutoRoutes');
+const EstoqueRoutes = require('./routes/EstoqueRoutes');
 
 
 
@@ -20,6 +21,7 @@ app.use(express.static('public'));
 app.use('/users', UsuarioRoutes);
 app.use('/mesa', MesaRoutes);
 app.use('/produto', ProdutoRoutes);
+app.use('/estoque', EstoqueRoutes);
 
 app.listen(5000);
 
