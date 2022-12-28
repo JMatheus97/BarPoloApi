@@ -13,17 +13,7 @@ module.exports = class ProdutoControler {
             return res.status(422).json({ message: "Informe o valor do produto !"});
         }
  
-        if(!quantidade){
-            return res.status(422).json({ message: "Informe o quantidade do produto !"});
-        }
-        
-        if(!tipo){
-            return res.status(422).json({ message: "Informe o tipo do produto !"});
-        }else {
-            if(!tipo === "Bebida" || !tipo === "Alimento"){
-                return res.status(422).json({ message: "O tipo não é aceito"});
-            }
-        }
+   
 
             const produtoExixts = await Produto.findOne({ nome});
             
@@ -33,9 +23,7 @@ module.exports = class ProdutoControler {
 
             const produto = Produto({
                 nome,
-                valor,
-                quantidade,
-                tipo
+                valor
             });
 
             try{
