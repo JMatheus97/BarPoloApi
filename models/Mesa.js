@@ -13,6 +13,11 @@ const Material = mongoose.model(
             type: Number,
             default: false,
         },
+        status: {
+            type: String,
+            required: true,
+            allowNull: false
+        }
     },
     {timestamps: true}
     )
