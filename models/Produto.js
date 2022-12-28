@@ -13,16 +13,6 @@ const Produto = mongoose.model(
             type: Number,
             required: true,
             allowNull: false,
-        },
-        quantidade: {
-            type: Number,
-            required: true,
-            allowNull: false
-        },
-        tipo: {
-            type: String,
-            required: true,
-            allowNull: false
         }
     })
 )
