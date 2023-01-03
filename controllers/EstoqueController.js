@@ -33,4 +33,13 @@ module.exports = class EstoqueController {
             return res.status(400).json({ message: "Não foi possível registar o estoque !", error });
         }
     }
+
+    static async find(req, res){
+        try{
+            const estoques = await Estoque.find().populate("produto");
+            return res.status(200).json({ estoques});
+        }catch(error){
+            return res.status(400).json({ message: "Não foi possível listar estoque !"});
+        }
+    }
 }
