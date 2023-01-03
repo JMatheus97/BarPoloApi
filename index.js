@@ -5,6 +5,7 @@ const MesaRoutes = require('./routes/MesaRoutes');
 const UsuarioRoutes = require('./routes/UsuarioRoutes');
 const ProdutoRoutes = require('./routes/ProdutoRoutes');
 const EstoqueRoutes = require('./routes/EstoqueRoutes');
+const ComandaRoutes = require('./routes/ComandaRoutes');
 
 
 
@@ -22,6 +23,7 @@ app.use('/users', UsuarioRoutes);
 app.use('/mesa', MesaRoutes);
 app.use('/produto', ProdutoRoutes);
 app.use('/estoque', EstoqueRoutes);
+app.use('/comanda', ComandaRoutes);
 
 app.listen(5000);
 
