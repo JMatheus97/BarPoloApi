@@ -23,4 +23,13 @@ module.exports = class MesaController {
             return res.status(400).json({ message: "Erro não foi possível salvar mesa!", error});
         }
     }
+
+    static async find(req, res){
+        try{
+            const mesas = await Mesa.find();
+            return res.status(200).json({ mesas});
+        }catch(error){
+            return res.status(400).json({ message: "Não foi possível listar mesas !"});
+        }
+    }
 }
