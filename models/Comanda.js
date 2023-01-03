@@ -14,6 +14,11 @@ const { Schema } = mongoose;
             required: true,
             allowNull: false,
         },
+        status: {
+            type: String,
+            required: true,
+            allowNull: false,
+        },
         mesa: {
             type: Schema.Types.ObjectId,
             ref:"Mesa",
@@ -28,8 +33,7 @@ const { Schema } = mongoose;
         },
         produto: {
             type: Schema.Types.ObjectId,
-            ref:"Produto",
-            required: true,
+            ref:"Produto"
         }
     })
  )
