@@ -35,4 +35,13 @@ module.exports = class ProdutoControler {
 
         }
 
+        static async find(req, res){
+            try{
+                const produtos = await Produto.find();
+                return res.status(200).json({ produtos});
+            }catch(error){
+                return res.status(400).json({ message: "Não foi possível listar produtos !"});
+            }
+        }
+    
 }
