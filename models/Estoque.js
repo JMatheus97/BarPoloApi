@@ -19,6 +19,11 @@ const Estoque = mongoose.model(
             type: String,
             required: true,
             allowNull: false
+        }, 
+        lote: {
+            type: String,
+            required: true,
+            allowNull: false
         }
     })
 )
