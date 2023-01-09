@@ -43,5 +43,35 @@ module.exports = class ProdutoControler {
                 return res.status(400).json({ message: "Não foi possível listar produtos !"});
             }
         }
+
+        static async edit(req, res){
+            const id  = req.params.id;
+
+            const { nome, valor } = req.body;
+           
+            try{
+            const produto = await Produto.findById({_id: id});
+
+            if(!produto){
+                return res.status(422).json({ message: "O produto informado não existe !"});
+            }
+
+            if(nome){
+                produto.nome = nome;
+            }
+
+            if(valor){
+                produto.valor = valor;
+            }
+
+            console.log(produto)
+            const produtoEdit = await Produto.findByIdAndUpdate({_id: produto._id},  {$set: produto}, {new: true});
+            return res.status(200).json({ produtoEdit });
+            
+        }catch(error){
+                 res.status(400).json({message: "Não foi possível editar o produto !"});
+                 console.log(error);
+            }
+        }
     
 }
