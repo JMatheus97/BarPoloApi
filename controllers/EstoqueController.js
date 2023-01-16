@@ -78,7 +78,7 @@ module.exports = class EstoqueController {
             }
         }
 
-        if(quantidade){
+        if(quantidade !== ""){
             estoque.quantidade = quantidade;
         }
 
@@ -104,6 +104,27 @@ module.exports = class EstoqueController {
             return res.status(200).json({ message: "Estoque editado com sucesso", resutlEstoque});
         }catch(error){
             return res.status(400).json({ message: "Erro ao editar o estoque !"});
+        }
+    }
+    
+    static async delete(req, res){
+        const id = req.params.id;
+
+        const estoque = await Estoque.findById({ _id: id});
+
+        if(!estoque){
+            return res.status(422).json({ message: "O estoque não foi encontrado"});
+        }else{
+            if(estoque.quantidade > 0){
+                return res.status(422).json({ message: "O quantidade é maior do que 0 não é possível excluir estoque !"})
+            }else{
+                try{
+                    await Estoque.findByIdAndDelete({ _id: estoque._id});
+                    return res.status(200).json({ message: "O estoque foi excluído com sucesso !"});
+                }catch(error){
+                    return res.status(400).json({ message: "Não foi possível excluir !"});
+                }
+            }
         }
     }
 }

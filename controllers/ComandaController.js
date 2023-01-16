@@ -75,4 +75,47 @@ module.exports = class ComandaController {
         }
     }
 
+    static async edit(req, res){
+        const id = req.params.id;
+
+        const { nomeCliente, produto, usuario, status, mesa, valor } = req.body;
+        const comanda = await Comanda.findById({ _id: id});
+
+        if(!comanda){
+            return res.status(422).json({ message: "A comanda não existe !"});
+        }
+
+        if(nomeCliente !== ""){
+            comanda.nome = nomeCliente;
+        }
+
+        if(usuario){
+        const userExits  = await Usuario.findById({ _id: usuario});
+            if(!userExits){
+                return res.status(422).json({ message: "O usuário não encontrado !"});
+            }else{
+                comanda.usuario = usuario;
+            }
+        }
+
+        if(mesa){
+        const mesaExits = await Mesa.findById({ _id: mesa});
+            if(!mesaExits){
+                return res.status(422).json({ message: "A mesa não encontrada !"});
+            }else{
+                comanda.mesa = mesa;
+            }
+        }
+
+        if(valor){
+            comanda.valor = valor;
+        }
+
+        if(status){
+                if(comanda.status !== status){
+                    comanda.status = status;
+                }
+        }
+    }
+
 }

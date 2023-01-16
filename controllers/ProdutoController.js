@@ -1,5 +1,5 @@
 const Produto = require('../models/Produto');
-
+const Estoque = require('../models/Estoque');
 
 module.exports = class ProdutoControler {
     static async create(req, res){
@@ -72,6 +72,31 @@ module.exports = class ProdutoControler {
                  res.status(400).json({message: "Não foi possível editar o produto !"});
                  console.log(error);
             }
+        }
+
+        static async delete(req, res){
+            const id = req.params.id;
+
+            const produto  = await Produto.findById({ _id: id});
+            if(!produto){
+                return res.status(422).json({ message: "O produto não encontrado !"});
+            }else{
+                const estoqueExits = await Estoque.findOne({ produto })
+                console.log(estoqueExits)
+                if(estoqueExits){
+                    if(estoqueExits.quantidade !== 0){
+                        return res.status(422).json({ message: "Não é possível excluir  produto que possui estoque !"});
+                    }
+                }else{
+                    try {
+                        await Produto.findByIdAndDelete({ _id: produto._id});
+                        return res.status(200).json({ message: "O produto excluído com sucesso !"});
+                    }catch(error){
+                        return res.status(400).json({ message: "Não foi possível excluir produto !"})
+                    }
+                }
+            }
+         
         }
     
 }

@@ -1,4 +1,5 @@
 const Mesa = require('../models/Mesa');
+const Comanda = require('../models/Comanda');
 
 module.exports = class MesaController {
     static async create(req, res) {
@@ -76,5 +77,27 @@ module.exports = class MesaController {
         }catch(error){
             return res.status(400).json({ message: "Não foi possível editar a mesa"});
         }
+    }
+
+    static async delete(req, res){
+        const id = req.params.id;
+
+        const mesa  = await Mesa.findById({ _id: id});
+        if(!mesa){
+            return res.status(422).json({ message: "O mesa não encontrada !"});
+        }else{
+            const comandaExits = await Comanda.findOne({ mesa })
+            if(comandaExits){
+                    return res.status(422).json({ message: "Não é possível excluir mesa que possui comanda !"});
+            }else{
+                try {
+                    await Mesa.findByIdAndDelete({ _id: mesa._id});
+                    return res.status(200).json({ message: "A mesa foi excluída com sucesso !"});
+                }catch(error){
+                    return res.status(400).json({ message: "Não foi possível excluir mesa !"})
+                }
+            }
+        }
+     
     }
 } 
