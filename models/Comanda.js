@@ -31,11 +31,11 @@ const { Schema } = mongoose;
             required: true,
             allowNull: false,
         },
-        produto: {
+        produto: [{
             type: Schema.Types.ObjectId,
             ref:"Produto"
-        }
-    })
+        }]
+    },  { timestamps: true})
  )
 
  module.exports = Comanda;
