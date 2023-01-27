@@ -25,7 +25,7 @@ const Estoque = mongoose.model(
             required: true,
             allowNull: false
         }
-    })
+    },  { timestamps: true})
 )
 
 module.exports = Estoque;
