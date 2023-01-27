@@ -14,7 +14,7 @@ const Produto = mongoose.model(
             required: true,
             allowNull: false,
         }
-    })
+    }, { timestamps: true})
 )
 
 module.exports = Produto;
