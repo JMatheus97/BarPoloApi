@@ -3,7 +3,7 @@ const Estoque = require('../models/Estoque');
 
 module.exports = class ProdutoControler {
     static async create(req, res){
-        const { nome, valor, quantidade, tipo} = req.body;
+        const { nome, valor} = req.body;
 
         if(!nome){
             return res.status(422).json({ message: "Informe o nome do produto !"});
