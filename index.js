@@ -19,7 +19,7 @@ app.use(cors({ credentials: true, origin:  'http://localhost:3000'}));
 app.use(express.static('public'));
 
 // Routes
-app.use('/users', UsuarioRoutes);
+app.use('/usuario', UsuarioRoutes);
 app.use('/mesa', MesaRoutes);
 app.use('/produto', ProdutoRoutes);
 app.use('/estoque', EstoqueRoutes);
