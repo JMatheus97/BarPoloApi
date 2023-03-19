@@ -1,8 +1,8 @@
-const Comanda = require('../../models/Comanda');
-const Mesa = require('../../models/Mesa');
-const Usuario = require('../../models/Usuario');
-const Estoque  = require('../../models/Estoque');
-const ComandaItem = require('../../models/ItemComanda');
+const Comanda = require('../classes-js/Comanda');
+const Mesa = require('../classes-js/Mesa');
+const Usuario = require('../classes-js/Usuario');
+const Estoque  = require('../classes-js/Estoque');
+const ComandaItem = require('../classes-js/ItemComanda');
 
 module.exports = class ComandaController {
     static async create(req, res){
@@ -65,7 +65,7 @@ module.exports = class ComandaController {
         }
     }
 
-    
+
     static async find(req, res){
         try{
             const comandas = await Comanda.find().populate("produto").populate("mesa").populate("usuario");

@@ -1,15 +1,15 @@
-const Mesa = require('../../models/Mesa');
-const Comanda = require('../../models/Comanda');
+const Mesa = require('../classes-js/Mesa');
+const Comanda = require('../classes-js/Comanda');
 
 module.exports = class MesaController {
     static async create(req, res) {
         const { numeroMesa, quantidadeCliente, status } = req.body;
 
-        
+
         if(!numeroMesa) {
             return  res.status(422).json({ mesage: " Informe o numero da mesa!"});
         }
-        
+
         const consultMesaExits  = await Mesa.findOne({ numeroMesa: numeroMesa});
 
         if(consultMesaExits){
@@ -20,12 +20,12 @@ module.exports = class MesaController {
             return res.status(422).json({ message: "Informe ao menos um cliente!"});
         }
 
-        const mesa = await Mesa({ 
+        const mesa = await Mesa({
             numeroMesa,
             quantidadeCliente,
             status
         });
-        try{ 
+        try{
             const resultMesa = await mesa.save();
             return res.status(200).json({ message: "Salvo com sucesso", resultMesa });
         }catch(error){
@@ -71,7 +71,7 @@ module.exports = class MesaController {
             mesa.status = status;
         }
 
-        try{    
+        try{
             const  mesaEdit = await Mesa.findByIdAndUpdate({ _id: mesa.id}, { $set: mesa }, { new: true });
             return res.status(200).json({ mesaEdit });
         }catch(error){
@@ -98,6 +98,6 @@ module.exports = class MesaController {
                 }
             }
         }
-     
+
     }
-} 
+}

@@ -1,4 +1,4 @@
-const Usuario = require('../../models/Usuario');
+const Usuario = require('../classes-js/Usuario');
 const bcrypt = require('bcrypt');
 
 //helpers
@@ -15,11 +15,11 @@ module.exports = class UsuarioController{
         if(!userName){
             return res.status(422).json({ message: "Informe o nome do usuário !"});
         }
- 
+
         if(!password){
             return res.status(422).json({ message: "Informe o password !"});
         }
- 
+
         if(!perfil){
             return res.status(422).json({ message: "Informe o perfil !"});
         }else if(perfil !== "Administrador"){
@@ -34,8 +34,8 @@ module.exports = class UsuarioController{
         // Create a password
         const salt = await bcrypt.genSalt(12);
         const passwordHash = await bcrypt.hash(password, salt);
-        
-        const usuario = Usuario({ 
+
+        const usuario = Usuario({
             nome,
             userName,
             password: passwordHash,

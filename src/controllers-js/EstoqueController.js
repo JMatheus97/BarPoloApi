@@ -1,5 +1,5 @@
-const Estoque = require('../../models/Estoque');
-const Produto = require('../../models/Produto');
+const Estoque = require('../classes-js/Estoque');
+const Produto = require('../classes-js/Produto');
 
 module.exports = class EstoqueController {
     static async create(req, res){
@@ -12,7 +12,7 @@ module.exports = class EstoqueController {
 
             if(!produtoExists){
                 return res.status(422).json({ message: "O produto informado não foi encontrado !"});
-            } 
+            }
 
             if(!lote){
                 return res.status(422).json({ message: "Informe o lote " })
@@ -22,13 +22,13 @@ module.exports = class EstoqueController {
 
              if(loteExists){
                 return res.status(422).json({ message: "O lote já  existe, favor informar outro !"});
-            } 
+            }
         }
-        
+
         if(!quantidade){
             return res.status(422).json({ message: "Informe o quantidade do produto !"});
         }
-        
+
         if(!tipo){
             return res.status(422).json({ message: "Informe o tipo do produto !"});
         }
@@ -106,7 +106,7 @@ module.exports = class EstoqueController {
             return res.status(400).json({ message: "Erro ao editar o estoque !"});
         }
     }
-    
+
     static async delete(req, res){
         const id = req.params.id;
 

@@ -1,5 +1,5 @@
-const Produto = require('../../models/Produto');
-const Estoque = require('../../models/Estoque');
+const Produto = require('../classes-js/Produto');
+const Estoque = require('../classes-js/Estoque');
 
 module.exports = class ProdutoControler {
     static async create(req, res){
@@ -12,11 +12,11 @@ module.exports = class ProdutoControler {
         if(!valor){
             return res.status(422).json({ message: "Informe o valor do produto !"});
         }
- 
-   
+
+
 
             const produtoExixts = await Produto.findOne({ nome});
-            
+
             if(produtoExixts){
                 return res.status(422).json({ message: "O nome do produto já existe"});
             }
@@ -48,7 +48,7 @@ module.exports = class ProdutoControler {
             const id  = req.params.id;
 
             const { nome, valor } = req.body;
-           
+
             try{
             const produto = await Produto.findById({_id: id});
 
@@ -67,7 +67,7 @@ module.exports = class ProdutoControler {
             console.log(produto)
             const produtoEdit = await Produto.findByIdAndUpdate({_id: produto._id},  {$set: produto}, {new: true});
             return res.status(200).json({ produtoEdit });
-            
+
         }catch(error){
                  res.status(400).json({message: "Não foi possível editar o produto !"});
                  console.log(error);
@@ -96,7 +96,7 @@ module.exports = class ProdutoControler {
                     }
                 }
             }
-         
+
         }
-    
+
 }

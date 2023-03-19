@@ -31,10 +31,6 @@ const { Schema } = mongoose;
             required: true,
             allowNull: false,
         },
-        produto: [{
-            type: Schema.Types.ObjectId,
-            ref:"Produto"
-        }]
     },  { timestamps: true})
  )
 
