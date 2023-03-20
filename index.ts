@@ -5,6 +5,7 @@ import * as dotenv from 'dotenv';
 import  AdressRoutes  from './src/routes/AdressRoutes'
 import UserRoutes from './src/routes/UserRoutes';
 import ProductRoutes from './src/routes/ProductRoutes';
+import MesaRoutes from './src/routes/MesaRoutes';
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use(express.static('public'));
 app.use('/endereco', AdressRoutes);
 app.use('/user', UserRoutes);
 app.use('/product', ProductRoutes);
+app.use('/mesa', MesaRoutes)
 
 mongoose.set("strictQuery", false);
 

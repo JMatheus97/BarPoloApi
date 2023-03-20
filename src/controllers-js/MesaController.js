@@ -1,7 +1,7 @@
 const Mesa = require('../classes-js/Mesa');
 const Comanda = require('../classes-js/Comanda');
 
-module.exports = class MesaController {
+module.exports = class MesasController {
     static async create(req, res) {
         const { numeroMesa, quantidadeCliente, status } = req.body;
 
