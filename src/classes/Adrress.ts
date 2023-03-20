@@ -13,7 +13,8 @@ import { Adress } from '../interfaces/AdressI'
 
 },  { timestamps: true})
 
-const  AdresssModal = model<Adress>('Adress', adressSchema)
-export default AdresssModal
+const  AdresssModal = model<Adress>('Adress', adressSchema);
+
+export default AdresssModal;
 
 

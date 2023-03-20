@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import * as dotenv from 'dotenv';
 import  AdressRoutes  from './src/routes/AdressRoutes'
 import UserRoutes from './src/routes/UserRoutes';
+import ProductRoutes from './src/routes/ProductRoutes';
 
 const app = express();
 
@@ -21,8 +22,9 @@ app.use(cors({ credentials: true, origin:  'http://localhost:3000'}));
 app.use(express.static('public'));
 
 //Routes
-app.use('/endereco', AdressRoutes)
-app.use('/user', UserRoutes)
+app.use('/endereco', AdressRoutes);
+app.use('/user', UserRoutes);
+app.use('/product', ProductRoutes);
 
 mongoose.set("strictQuery", false);
 

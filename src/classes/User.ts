@@ -8,5 +8,6 @@ const userSchema = new Schema<UserI>({
   perfil: { type: String, required: true, allowNull: false}
 }, { timestamps: true})
 
-const UserModal = model<UserI>('User', userSchema)
+const UserModal = model<UserI>('User', userSchema);
+
 export default UserModal;
