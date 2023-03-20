@@ -36,6 +36,7 @@
     "typescript": "^5.0.2"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "sequelize-cli": "^6.5.1"
   }
 }

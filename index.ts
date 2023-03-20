@@ -2,7 +2,8 @@ import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose';
 import * as dotenv from 'dotenv';
-import  { AdressRoutes }  from './src/routes/AdressRoutes'
+import  AdressRoutes  from './src/routes/AdressRoutes'
+import UserRoutes from './src/routes/UserRoutes';
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(express.static('public'));
 
 //Routes
 app.use('/endereco', AdressRoutes)
+app.use('/user', UserRoutes)
 
 mongoose.set("strictQuery", false);
 
@@ -31,5 +33,5 @@ async function main(){
 
 main().catch((err) => console.log(err));
 
-app.listen(5001);
+app.listen(5000);
 

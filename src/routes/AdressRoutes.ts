@@ -8,4 +8,5 @@ const adressController =  new AdressController();
 route.post('/new', adressController.create);
 route.get("/", adressController.find)
 
-export const AdressRoutes = route;
+const AdressRoutes = route;
+export default AdressRoutes;

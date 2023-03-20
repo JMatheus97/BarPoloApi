@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose'
-import { Adress } from '../interfaces/Adress'
+import { Adress } from '../interfaces/AdressI'
 
 
  const adressSchema =   new Schema<Adress>({

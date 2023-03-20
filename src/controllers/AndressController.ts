@@ -1,6 +1,6 @@
 import  AdresssModal  from "../classes/Adrress";
 import { Request, Response } from 'express';
-import { Adress } from "../interfaces/Adress";
+import { Adress } from "../interfaces/AdressI";
 
 export class AdressController extends AdresssModal {
      public async create(req: Request, res: Response){
