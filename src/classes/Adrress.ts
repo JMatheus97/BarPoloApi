@@ -1,8 +1,8 @@
 import { Schema, model } from 'mongoose'
-import { Adress } from '../interfaces/AdressI'
+import { AdressI } from '../interfaces/AdressI'
 
 
- const adressSchema =   new Schema<Adress>({
+ const adressSchema =   new Schema<AdressI>({
     cep: { type: String, required: true, allowNull: false},
     street: { type: String, required: true, allowNull: false},
     numberStore: Number,
@@ -13,7 +13,7 @@ import { Adress } from '../interfaces/AdressI'
 
 },  { timestamps: true})
 
-const  AdresssModal = model<Adress>('Adress', adressSchema);
+const  AdresssModal = model<AdressI>('Adress', adressSchema);
 
 export default AdresssModal;
 

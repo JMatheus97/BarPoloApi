@@ -1,4 +1,4 @@
-export interface Adress{
+export interface AdressI{
     cep: string,
     street: string,
     numberStore?: number,
