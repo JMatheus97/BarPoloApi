@@ -1,6 +1,7 @@
 import StoreModal from "../classes/Store";
 import  { Request, Response } from 'express';
 import AdresssModal from "../classes/Adrress";
+import { AdressI } from "../interfaces/AdressI";
 
 export class StoreController extends StoreModal{
   public async create(req: Request, res: Response){
@@ -57,7 +58,7 @@ export class StoreController extends StoreModal{
 
   public async find(req: Request, res: Response){
     try {
-      const stores = await StoreModal.find().populate("Adrress");
+      const stores = await StoreModal.find().populate([{"path": "adress", "model": "Adress"}])
       return res.status(201).json(stores)
     }catch(error){
       res.status(400).json({ message: "Não foi possível buscar lojas !"});
