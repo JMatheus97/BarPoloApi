@@ -40,4 +40,36 @@ export class UserController extends UserModal{
         return res.status(400).json({ message: "Erro ao salvar usuário!", error});
     }
   }
+
+  public async login(req: Request, res: Response){
+      const user = new UserModal(req.body);
+
+      if(user.userName === undefined){
+        return res.status(401).json({ message: "O campo nome de usuário obrigatório !"});
+      }
+
+        if(user.password === undefined){
+        return res.status(401).json({ message: "O campo senha obrigatório !"});
+      }
+
+      try{
+        const checkUserName = await UserModal.findOne({ userName: user.userName });
+
+        if(checkUserName !== null){
+          const checkPassword = await bcrypt.compare(user.password, checkUserName.password);
+
+          if(!checkPassword){
+            return res.status(401).json({ message: "A senha informada é inválida !"});
+          }
+          await createUserToken(user, req, res);
+        }else {
+          return res.status(401).json({ message: "O Usuário informado é inválido !"})
+        }
+
+      }catch(error){
+          return res.status(400).json({ message: "Usuário não existe"})
+      }
+  }
+
+
 }

@@ -6,6 +6,7 @@ const userController = new UserController();
 
 
 route.post('/new',  userController.create);
+route.post('/login', userController.login)
 
 const UserRoutes = route;
 
