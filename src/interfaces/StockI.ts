@@ -4,5 +4,8 @@ export interface StockI {
   product: ProductI;
   amount: number;
   type: string;
-  lote: string
+  batch: string,
+  code: string,
+  validity: Date,
+  unitOfMeasurement: string
 }

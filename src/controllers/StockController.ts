@@ -27,8 +27,23 @@ export class StockControler extends StockModel{
       return;
     }
 
-    if(stock.lote === undefined){
-      res.status(401).json({ message: "IO campo lote é obrigatório !"});
+    if(stock.batch === undefined){
+      res.status(401).json({ message: "O campo lote é obrigatório !"});
+      return;
+    }
+
+    if(stock.unitOfMeasurement === undefined){
+      res.status(401).json({ message: "O campo Unidade Medida é obrigatório !"});
+      return;
+    }
+
+    if(stock.unitOfMeasurement === undefined){
+      res.status(401).json({ message: "O campo Unidade Medida é obrigatório !"});
+      return;
+    }
+
+    if(stock.validity === undefined){
+      res.status(401).json({ message: "O campo Validade é obrigatório !"});
       return;
     }
 
