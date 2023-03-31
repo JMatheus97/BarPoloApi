@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import * as dotenv from 'dotenv';
 import UserRoutes from './src/routes/UserRoutes';
 import ProductRoutes from './src/routes/ProductRoutes';
-import MesaRoutes from './src/routes/MesaRoutes';
+import TableRoutes from './src/routes/TableRoutes';
 import StoreRoutes from './src/routes/StoreRoutes';
 import StockRoutes from './src/routes/StockRoutes';
 
@@ -26,7 +26,7 @@ app.use(express.static('public'));
 //Routes
 app.use('/user', UserRoutes);
 app.use('/product', ProductRoutes);
-app.use('/mesa', MesaRoutes)
+app.use('/table', TableRoutes)
 app.use('/store', StoreRoutes);
 app.use('/stock', StockRoutes);
 

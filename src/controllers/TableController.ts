@@ -1,12 +1,12 @@
-import MesaModal from "../classes/Mesa";
+import TableModal from "../classes/Table";
 import { Request, Response } from 'express';
-import { MesaI } from "../interfaces/MesaI";
+import { TableI } from "../interfaces/TableI";
 
-export class MesaController extends MesaModal{
+export class TableController extends TableModal{
   public async create(req: Request, res: Response){
-    const mesa = new MesaModal(req.body);
+    const mesa = new TableModal(req.body);
 
-    if(mesa.numeroMesa === undefined){
+    if(mesa.tableNumber === undefined){
     res.status(401).json({ message: "O campo Numero da Mesa é obrigatório !"});
     return;
     }
@@ -27,11 +27,10 @@ export class MesaController extends MesaModal{
 
   public async find(req: Request, res: Response){
     try{
-      const mesas: Array<MesaI> = await MesaModal.find();
+      const mesas: Array<TableI> = await TableModal.find();
       return res.status(200).json(mesas);
     }catch(error){
-      console.log(error);
-      return res.status(401).json({ message: "O campo Status é obrigatório !"});
+      return res.status(401).json({ message: "Não foi possível buscar Mesas !"});
 
     }
   }
