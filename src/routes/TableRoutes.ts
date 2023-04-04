@@ -6,6 +6,7 @@ const tableControler = new TableController();
 
 route.post('/new', tableControler.create);
 route.get('/', tableControler.find);
+route.post('/:id', tableControler.edit)
 
 const MesaRoutes = route;
 

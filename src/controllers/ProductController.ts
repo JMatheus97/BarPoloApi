@@ -1,7 +1,7 @@
 import ProductModal from "../classes/Product";
 import {Request, Response} from 'express';
 import { ProductI } from "../interfaces/ProductI";
-import {verifyExists } from '../../helpers/verify-exits';
+import {verifyExistsProduct } from '../../helpers/verify-exits';
 import StockModel from "../classes/Stock";
 
 export class ProductController extends ProductModal{
@@ -43,7 +43,7 @@ export class ProductController extends ProductModal{
       res.status(400).json({ message: "O id informado está inválido !"});
     }
 
-    const procutsExist = await verifyExists(id);
+    const procutsExist = await verifyExistsProduct(id);
 
     if(procutsExist === null){
       return res.status(400).json({ message: "O produto informado não foi encontrado !"});
@@ -66,7 +66,7 @@ export class ProductController extends ProductModal{
   public  async deleteProduct(req: Request, res: Response){
     const id: String = req.params.id;
 
-    const product = await verifyExists(id);
+    const product = await verifyExistsProduct(id);
 
     if(product === null){
       return res.status(400).json({ message: "O produto informado não foi encontrado !"});
