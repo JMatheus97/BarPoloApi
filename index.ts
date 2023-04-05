@@ -7,6 +7,7 @@ import ProductRoutes from './src/routes/ProductRoutes';
 import TableRoutes from './src/routes/TableRoutes';
 import StoreRoutes from './src/routes/StoreRoutes';
 import StockRoutes from './src/routes/StockRoutes';
+import EmployeeRoutes from './src/routes/EmployeeRoutes';
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use('/product', ProductRoutes);
 app.use('/table', TableRoutes)
 app.use('/store', StoreRoutes);
 app.use('/stock', StockRoutes);
+app.use('/employee', EmployeeRoutes);
 
 mongoose.set("strictQuery", false);
 

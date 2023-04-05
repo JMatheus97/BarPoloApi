@@ -62,4 +62,24 @@ export class TableController extends TableModal{
       return res.status(401).json({ message: "Informe ao menos campo deseja alterar !"});
     }
   }
+
+
+  public  async deleteTable(req: Request, res: Response){
+    const id: String = req.params.id;
+
+    const product = await verifyExistsTable(id);
+
+    if(product === null){
+      return res.status(400).json({ message: "A mesa informada não foi encontrado !"});
+    }
+
+
+    try{
+      await TableModal.findByIdAndDelete({_id: id});
+      return res.status(201).json({ message: "A Mesa foi excluída com sucesso !"});
+    }catch(error){
+      return res.status(400).json({ message: "Não foi possível excluir a mesa !"});
+    }
+
+  }
 }

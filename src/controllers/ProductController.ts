@@ -10,7 +10,7 @@ export class ProductController extends ProductModal{
     let product = new ProductModal(req.body);
 
     if(product.nome === undefined){
-      res.status(401).json({ message: "O campo Nome é obrigatório !"});
+      return res.status(401).json({ message: "O campo Nome é obrigatório !"});
     }
 
     try{
@@ -74,18 +74,19 @@ export class ProductController extends ProductModal{
 
     try{
       const producIndStockExists =   await StockModel.findOne({ product});
-
-      if(producIndStockExists === null){
-        await ProductModal.findByIdAndDelete({_id: id});
-        return res.status(201).json({ message: "Produto excluído com sucesso !"});
-      }else {
-        return res.status(201).json({ message: "Produto possui estoque !"});
+      if(producIndStockExists !== null){
+        return res.status(401).json({ message: "Produto possui estoque !"});
       }
+    }catch(error){
+      return res.status(400).json({ message: "Produto possui estoque !"});
+    }
 
+    try{
+      await ProductModal.findByIdAndDelete({_id: id});
+      return res.status(201).json({ message: "Produto excluído com sucesso !"});
     }catch(error){
       return res.status(400).json({ message: "Não foi possível excluir produto"})
     }
-
 
   }
 }
