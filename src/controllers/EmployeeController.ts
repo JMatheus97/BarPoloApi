@@ -8,6 +8,12 @@ export class EmployeeController extends EmployeeModal {
   public async create(req: Request, res: Response){
     let employee = new EmployeeModal(req.body);
 
+    if(req.body.user !== undefined){
+      const users = new UserModal(req.body.user);
+      employee.user = users;
+    }
+
+
 
     if(employee.firstName === undefined){
      return res.status(401).json({ message: "O campo Nome é obrigatório !"})
@@ -21,15 +27,13 @@ export class EmployeeController extends EmployeeModal {
       return res.status(401).json({ message: "O campo Documento é obrigatório !"})
      }
 
+     console.log(employee)
      if(employee.user !== undefined){
-      if(employee.user.password || employee.user.nome){
-         res.status(401).json({ message:"O campo nome de usuário e senha é obrigatório"});
-         return;
-      }
+
       try{
         const userExist = await verifyExistsUser(employee.user);
         if(userExist !== null){
-          return res.status(401).json({ message: "Já existe um usuário com nome, tente outro !"});
+          return res.status(401).json({ message: "Já existe um usuário com esse nome de usuario, tente outro !"});
         }
 
       const user = new UserModal(employee.user);

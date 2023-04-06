@@ -11,6 +11,6 @@ export interface Employeel {
   document: string,
   fone?: string,
   office: Office,
-  user?: UserI
+  user: UserI
 
 }
