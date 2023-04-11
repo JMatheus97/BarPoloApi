@@ -5,6 +5,8 @@ import UserModal from "../classes/User";
 import bcrypt from 'bcrypt'
 
 export class EmployeeController extends EmployeeModal {
+
+  //CREATE
   public async create(req: Request, res: Response){
     let employee = new EmployeeModal(req.body);
 
@@ -12,8 +14,6 @@ export class EmployeeController extends EmployeeModal {
       const users = new UserModal(req.body.user);
       employee.user = users;
     }
-
-
 
     if(employee.firstName === undefined){
      return res.status(401).json({ message: "O campo Nome é obrigatório !"})
