@@ -1,7 +1,6 @@
 import StoreModal from "../classes/Store";
 import  { Request, Response } from 'express';
 import AdresssModal from "../classes/Adrress";
-import { AdressI } from "../interfaces/AdressI";
 
 export class StoreController extends StoreModal{
   public async create(req: Request, res: Response){
