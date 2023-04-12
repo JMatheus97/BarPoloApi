@@ -1,5 +1,6 @@
 import ProductModal from "../src/classes/Product";
 import StockModel from "../src/classes/Stock";
+import StoreModal from "../src/classes/Store";
 import TableModal from "../src/classes/Table";
 import UserModal from "../src/classes/User";
 import { UserI } from "../src/interfaces/UserI";
@@ -39,6 +40,16 @@ export async function verifyExistsStock(id: String ){
   try {
   const user = await StockModel.findById({_id: id});
   return user;
+  }catch(error){
+    return null;
+  }
+}
+
+
+export async function verifyExistsStore(id: String ){
+  try {
+  const store = await StoreModal.findById({_id: id});
+  return store;
   }catch(error){
     return null;
   }

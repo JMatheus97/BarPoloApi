@@ -6,6 +6,8 @@ const storeController = new StoreController();
 
 route.post('/new', storeController.create);
 route.get('/', storeController.find);
+route.post('/:id', storeController.edit);
+route.delete("/:id", storeController.deleteStore);
 
 const StoreRoutes = route;
 
