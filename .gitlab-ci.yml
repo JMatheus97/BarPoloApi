@@ -1,5 +1,6 @@
 stages:
   - start
+  - test
 
 iniciar_api:
   stage: start
@@ -10,8 +11,7 @@ iniciar_api:
     - npm start
 
 realizar_testes:
-  needs:
-    - job: iniciar_api
+  stage: test
   script:
     - npm test
   artifacts:
