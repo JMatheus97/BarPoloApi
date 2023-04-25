@@ -1,11 +1,11 @@
 stages:
-  - test
   - start
+  - test
 
 iniciar_api:
   stage: start
   image: node:17-alpine3.14
-before_script:
+  before_script:
     - npm install
       script:
     - npm start
