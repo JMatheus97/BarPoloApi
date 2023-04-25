@@ -1,11 +1,19 @@
 stages:
   - test
+  - start
+
+iniciar_api:
+  stage: start
+  image: node:17-alpine3.14
+before_script:
+    - npm install
+      script:
+    - npm start
 
 realizar_testes:
   stage: test
-  image: node:17-alpine3.14
-  before_script:
-    - npm install
+    needs:
+    - criar_imagens
   script:
     - npm test
   artifacts:

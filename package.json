@@ -3,10 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "jest --detectOpenHandles",
-    "test:silent": "jest --watchAll --silent --noStackTrace --detectOpenHandles",
-    "test:coverage": "jest --coverage --watchAll --silent --noStackTrace --detectOpenHandles",
-    "start": "nodemon ./index.ts localhost 5000"
+    "test": "jest",
+     "start": "nodemon ./index.ts localhost 5000"
   },
   "keywords": [],
   "author": "",

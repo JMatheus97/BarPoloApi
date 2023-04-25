@@ -41,5 +41,5 @@ async function main(){
 
 main().catch((err) => console.log(err));
 
-export default app;
+app.listen(5000);
 
