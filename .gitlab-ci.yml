@@ -14,7 +14,7 @@ iniciar_api:
 realizar_testes:
   stage: test
   needs:
-    - job: iniciar_api:
+    - job: iniciar_api
   script:
     - npm test
   artifacts:
