@@ -12,4 +12,4 @@ realizar_testes:
   artifacts:
     when: always
     reports:
-      junit: app/junit.xml
+      junit: BarPolo/junit.xml
