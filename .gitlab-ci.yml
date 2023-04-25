@@ -13,7 +13,7 @@ iniciar_api:
 realizar_testes:
   stage: test
     needs:
-    - criar_imagens
+    - iniciar_api
   script:
     - npm test
   artifacts:
