@@ -9,11 +9,12 @@ iniciar_api:
     - npm install
   script:
     - npm start
+  after_script:
 
 realizar_testes:
   stage: test
   needs:
-    - iniciar_api
+    - job: iniciar_api:
   script:
     - npm test
   artifacts:
