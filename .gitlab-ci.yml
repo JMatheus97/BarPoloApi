@@ -7,12 +7,12 @@ iniciar_api:
   image: node:17-alpine3.14
   before_script:
     - npm install
-      script:
+  script:
     - npm start
 
 realizar_testes:
   stage: test
-    needs:
+  needs:
     - iniciar_api
   script:
     - npm test
