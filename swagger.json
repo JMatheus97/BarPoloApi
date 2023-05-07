@@ -1,0 +1,1057 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Commands",
+    "description": "Documentation from Commands",
+    "version": "1.0.0"
+  },
+  "basePath": "/",
+  "paths": {
+    "/product/": {
+      "get": {
+          "description": "Listar todos produtos",
+          "tags": ["Products"],
+          "parametres": {
+              "in": "*",
+              "name": "*",
+              "type": "*/*"
+          },
+          "responses": {
+              "200": {
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "type": "object",
+                                "properties": {
+                                  "name": {
+                                      "type": "string"
+                                  },
+                                  "valor": {
+                                      "type": "number"
+                                  }
+                              },
+                              "example": {
+                                  "name": "Dell Vale",
+                                  "valor": 2.50
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      }
+    },
+    "/product/new": {
+        "post": {
+          "description": "Criar novo produto",
+          "tags": ["Products"],
+          "requestBody": {
+              "content": {
+                  "application/json": {
+                      "schema": {
+                          "type": "object" ,
+                          "properties": {
+                              "name": {
+                                  "type": "string"
+                              },
+                              "valor": {
+                                  "type": "number"
+                              }
+                          }
+                      }
+                  }
+              }
+          },
+        "responses": {
+            "201": {
+              "description": "Salvo com sucesso !",
+              "content": {
+                "application/json": {
+                    "schema": {
+                        "type": "object",
+                          "properties": {
+                            "_id": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "valor": {
+                                "type": "number"
+                            }
+                        },
+                        "example": {
+                          "_id": "564das6d4as65d4a65s",
+                          "name": "Dell Vale",
+                          "valor": 2.50
+                      }
+                    }
+                }
+              }
+            }
+        }
+    }
+  },
+  "/product/{id}": {
+    "post": {
+      "description": "Editar um produto",
+      "tags": ["Products"],
+      "requestBody": {
+          "content": {
+              "application/json": {
+                  "schema": {
+                      "type": "object" ,
+                      "properties": {
+                          "name": {
+                              "type": "string"
+                          },
+                          "valor": {
+                              "type": "number"
+                          }
+                      }
+                  }
+              }
+          }
+      },
+        "responses": {
+            "201": {
+              "description": "Editado com sucesso !",
+              "content": {
+                "application/json": {
+                    "schema": {
+                        "type": "object",
+                          "properties": {
+                            "_id": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "valor": {
+                                "type": "number"
+                            }
+                        },
+                        "example": {
+                          "_id": "564das6d4as65d4a65s",
+                          "name": "Dell Vale",
+                          "valor": 2.50
+                      }
+                    }
+                }
+              }
+            }
+        }
+      },
+      "delete": {
+        "description": "Excluir um produto",
+        "tags": ["Products"],
+          "responses": {
+              "201": {
+                "description": "Excluido com sucesso !"
+              }
+          }
+        }
+      },
+      "/store/": {
+        "get": {
+            "description": "Listar todas Lojas",
+            "tags": ["Store"],
+            "parametres": {
+                "in": "*",
+                "name": "*",
+                "type": "*/*"
+            },
+            "responses": {
+                "200": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                  "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "cnpj": {
+                                        "type": "number"
+                                    },
+                                    "adress": {
+                                        "type": "object",
+                                        "properties": {
+                                            "cep": {
+                                                "type": "string"
+                                            },
+                                            "district": {
+                                                "type": "string"
+                                            },
+                                            "city": {
+                                              "type": "string"
+                                          },
+                                          "street": {
+                                            "type": "string"
+                                          },
+                                          "numberStore": {
+                                            "type": "number"
+                                          },
+                                          "uf": {
+                                            "type": "string"
+                                          },
+                                          "complement": {
+                                            "type": "string"
+                                          }
+                                        }
+                                    }
+                                },
+                                "example": {
+                                  "name": "Emrpresa Diferencaida",
+                                  "cnpj": "000.000.000/0000.00",
+                                  "adress": {
+                                      "cep": "86025-200",
+                                      "district": "Gleba",
+                                      "city": "Londrina",
+                                      "street": "Rua Gelobel",
+                                      "numberStore": 845,
+                                      "uf": "PR",
+                                      "complement": "Fundos"
+                                  }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+      },
+      "/store/new": {
+          "post": {
+            "description": "Criar nova Loja",
+            "tags": ["Store"],
+            "requestBody": {
+                "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                          "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "cnpj": {
+                                "type": "string"
+                            },
+                            "adress": {
+                                "type": "object",
+                                "properties": {
+                                    "cep": {
+                                        "type": "string"
+                                    },
+                                    "district": {
+                                        "type": "string"
+                                    },
+                                    "city": {
+                                      "type": "string"
+                                  },
+                                  "street": {
+                                    "type": "string"
+                                  },
+                                  "numberStore": {
+                                    "type": "number"
+                                  },
+                                  "uf": {
+                                    "type": "string"
+                                  },
+                                  "complement": {
+                                    "type": "string"
+                                  }
+                                }
+                            }
+                        }
+                      }
+                    }
+                }
+            },
+          "responses": {
+              "201": {
+                "description": "Salvo com sucesso !",
+                "content": {
+                  "application/json": {
+                      "schema": {
+                          "type": "object",
+                          "example": {
+                            "name": "Emrpresa Diferencaida",
+                            "cnpj": "000.000.000/0000.00",
+                            "adress": {
+                                "cep": "86025-200",
+                                "district": "Gleba",
+                                "city": "Londrina",
+                                "street": "Rua Gelobel",
+                                "numberStore": 845,
+                                "uf": "PR",
+                                "complement": "Fundos"
+                            }
+                          }
+                      }
+                  }
+                }
+              }
+          }
+      }
+    },
+    "/store/{id}": {
+      "post": {
+        "description": "Editar uma Loja",
+        "tags": ["Store"],
+        "requestBody": {
+            "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                      "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "cnpj": {
+                            "type": "string"
+                        },
+                        "adress": {
+                            "type": "object",
+                            "properties": {
+                                "cep": {
+                                    "type": "string"
+                                },
+                                "district": {
+                                    "type": "string"
+                                },
+                                "city": {
+                                  "type": "string"
+                              },
+                              "street": {
+                                "type": "string"
+                              },
+                              "numberStore": {
+                                "type": "number"
+                              },
+                              "uf": {
+                                "type": "string"
+                              },
+                              "complement": {
+                                "type": "string"
+                              }
+                            }
+                        }
+                    }
+                  }
+                }
+            }
+        },
+          "responses": {
+              "201": {
+                "description": "Editado com sucesso !",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "example": {
+                        "name": "Emrpresa Diferencaida",
+                        "cnpj": "000.000.000/0000.00",
+                        "adress": {
+                            "cep": "86025-200",
+                            "district": "Gleba",
+                            "city": "Londrina",
+                            "street": "Rua Gelobel",
+                            "numberStore": 845,
+                            "uf": "PR",
+                            "complement": "Fundos"
+                        }
+                      }
+                   }
+                  }
+                }
+              }
+          }
+        },
+        "delete": {
+          "description": "Excluir uma loja",
+          "tags": ["Store"],
+            "responses": {
+                "201": {
+                  "description": "Excluido com sucesso !"
+                }
+            }
+          }
+        },
+        "/employee/": {
+          "get": {
+              "description": "Listar o funcionários",
+              "tags": ["Employee"],
+              "parametres": {
+                  "in": "*",
+                  "name": "*",
+                  "type": "*/*"
+              },
+              "responses": {
+                  "200": {
+                      "content": {
+                          "application/json": {
+                            "schema": {
+                              "type": "object",
+                                "properties": {
+                                  "firstName": {
+                                    "type": "string"
+                                  },
+                                  "lastName": {
+                                      "type":  "string"
+                                  },
+                                  "document": {
+                                    "type":  "date"
+                                  },
+                                  "user": {
+                                    "type": "object",
+                                    "properties": {
+                                        "_id": {
+                                            "type": "string"
+                                        },
+                                        "nome": {
+                                            "type": "string"
+                                        },
+                                        "userName": {
+                                          "type": "string"
+                                      },
+                                      "password": {
+                                        "type": "string"
+                                      },
+                                      "perfil": {
+                                        "type": "string"
+                                    }
+                                  }
+                                }
+                              },
+                              "example":  {
+                                "_id": "642e3d07961e6d29285790c1",
+                                "firstName": "Marcelo",
+                                "lastName": "Sabino",
+                                "document": "99.999.999-99",
+                                "user": {
+                                  "_id": "642e3d07961e6d29285790c2",
+                                  "nome": "Marcelo Sabino",
+                                  "userName": "Marcelo",
+                                  "password": "$2b$12$LSxGAOWgfoNB.DcK34lrL.TAIq5NnsB3rA.hrFjMOi99j2o8TYgj6",
+                                  "perfil": "Gerencial"
+                                }
+                              }
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+        },
+        "/employee/new": {
+            "post": {
+              "description": "Criar um novo funcionário",
+              "tags": ["Employee"],
+              "requestBody": {
+                  "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "properties": {
+                            "firstName": {
+                              "type": "string"
+                            },
+                            "lastName": {
+                                "type":  "string"
+                            },
+                            "document": {
+                              "type":  "date"
+                            },
+                            "user": {
+                              "type": "object",
+                              "properties": {
+                                  "_id": {
+                                      "type": "string"
+                                  },
+                                  "nome": {
+                                      "type": "string"
+                                  },
+                                  "userName": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                  "type": "string"
+                                },
+                                "perfil": {
+                                  "type": "string"
+                              }
+                            }
+                          }
+                        }
+                        }
+                      }
+                  }
+              },
+            "responses": {
+                "201": {
+                  "description": "Salvo com sucesso !",
+                  "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "example":  {
+                              "_id": "642e3d07961e6d29285790c1",
+                              "firstName": "Marcelo",
+                              "lastName": "Sabino",
+                              "document": "99.999.999-99",
+                              "user": {
+                                "_id": "642e3d07961e6d29285790c2",
+                                "nome": "Marcelo Sabino",
+                                "userName": "Marcelo",
+                                "password": "$2b$12$LSxGAOWgfoNB.DcK34lrL.TAIq5NnsB3rA.hrFjMOi99j2o8TYgj6",
+                                "perfil": "Gerencial"
+                              }
+                            }
+                        }
+                    }
+                  }
+                }
+            }
+        }
+      },
+      "/employee/{id}": {
+        "post": {
+          "description": "Editar um funcionário",
+          "tags": ["Employee"],
+          "requestBody": {
+              "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "firstName": {
+                          "type": "string"
+                        },
+                        "lastName": {
+                            "type":  "string"
+                        },
+                        "document": {
+                          "type":  "date"
+                        },
+                        "user": {
+                          "type": "object",
+                          "properties": {
+                              "_id": {
+                                  "type": "string"
+                              },
+                              "nome": {
+                                  "type": "string"
+                              },
+                              "userName": {
+                                "type": "string"
+                            },
+                            "password": {
+                              "type": "string"
+                            },
+                            "perfil": {
+                              "type": "string"
+                          }
+                        }
+                      }
+                    }
+                    }
+                  }
+              }
+          },
+            "responses": {
+                "201": {
+                  "description": "Editado com sucesso !",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "example":  {
+                          "_id": "642e3d07961e6d29285790c1",
+                          "firstName": "Marcelo",
+                          "lastName": "Sabino",
+                          "document": "99.999.999-99",
+                          "user": {
+                            "_id": "642e3d07961e6d29285790c2",
+                            "nome": "Marcelo Sabino",
+                            "userName": "Marcelo",
+                            "password": "$2b$12$LSxGAOWgfoNB.DcK34lrL.TAIq5NnsB3rA.hrFjMOi99j2o8TYgj6",
+                            "perfil": "Gerencial"
+                          }
+                        }
+                    }
+                    }
+                  }
+                }
+            }
+          },
+          "delete": {
+            "description": "Excluir um funcionário",
+            "tags": ["Employee"],
+              "responses": {
+                  "201": {
+                    "description": "Excluido com sucesso !"
+                  }
+              }
+            }
+          },
+          "/stock/": {
+            "get": {
+                "description": "Listar o estoque",
+                "tags": ["Stock"],
+                "parametres": {
+                    "in": "*",
+                    "name": "*",
+                    "type": "*/*"
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                              "schema": {
+                                "type": "object",
+                                  "properties": {
+                                    "product": {
+                                        "type": "object",
+                                        "properties": {
+                                            "_id": {
+                                                "type": "string"
+                                            },
+                                            "nome": {
+                                                "type": "string"
+                                            },
+                                            "valor": {
+                                              "type": "number"
+                                          }
+                                        }
+                                    },
+                                    "amount": {
+                                      "type": "number"
+                                    },
+                                    "type": {
+                                      "type": "string"
+                                    },
+                                    "code": {
+                                        "type":  "string"
+                                    },
+                                    "validity": {
+                                      "type":  "date"
+                                    },
+                                    "batch": {
+                                      "type":  "string"
+                                    },
+                                    "unitOfMeasurement": {
+                                      "type":  "string"
+                                    }
+                                },
+                                "example": {
+                                    "_id": "642b8f5e11bd1d9db785cf8a",
+                                    "product": {
+                                        "_id": "64250c3aa8a0a4a81aa0dfe9",
+                                        "nome": "Brahama",
+                                        "valor": 3.5
+                                    },
+                                    "amount": 52,
+                                    "type": "Insumo",
+                                    "code": "1",
+                                    "validity": "2023-04-01T00:00:00.000Z",
+                                    "batch": "123",
+                                    "unitOfMeasurement": "UND"
+                                  }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+          },
+          "/stock/new": {
+              "post": {
+                "description": "Criar um novo estoque",
+                "tags": ["Stock"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                          "schema": {
+                            "type": "object",
+                              "properties": {
+                                "product": {
+                                    "type": "object",
+                                    "properties": {
+                                        "_id": {
+                                            "type": "string"
+                                        },
+                                        "nome": {
+                                            "type": "string"
+                                        },
+                                        "valor": {
+                                          "type": "number"
+                                      }
+                                    }
+                                },
+                                "amount": {
+                                  "type": "number"
+                                },
+                                "type": {
+                                  "type": "string"
+                                },
+                                "code": {
+                                    "type":  "string"
+                                },
+                                "validity": {
+                                  "type":  "date"
+                                },
+                                "batch": {
+                                  "type":  "string"
+                                },
+                                "unitOfMeasurement": {
+                                  "type":  "string"
+                                }
+                            }
+                          }
+                        }
+                    }
+                },
+              "responses": {
+                  "201": {
+                    "description": "Salvo com sucesso !",
+                    "content": {
+                      "application/json": {
+                          "schema": {
+                              "type": "object",
+                              "example": {
+                                "_id": "642b8f5e11bd1d9db785cf8a",
+                                "product": {
+                                    "_id": "64250c3aa8a0a4a81aa0dfe9",
+                                    "nome": "Brahama",
+                                    "valor": 3.5
+                                },
+                                "amount": 52,
+                                "type": "Insumo",
+                                "code": "1",
+                                "validity": "2023-04-01T00:00:00.000Z",
+                                "batch": "123",
+                                "unitOfMeasurement": "UND"
+                              }
+                          }
+                      }
+                    }
+                  }
+              }
+          }
+        },
+        "/stock/{id}": {
+          "post": {
+            "description": "Editar um estoque",
+            "tags": ["Stock"],
+            "requestBody": {
+                "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                          "properties": {
+                            "product": {
+                                "type": "object",
+                                "properties": {
+                                    "_id": {
+                                        "type": "string"
+                                    },
+                                    "nome": {
+                                        "type": "string"
+                                    },
+                                    "valor": {
+                                      "type": "number"
+                                  }
+                                }
+                            },
+                            "amount": {
+                              "type": "number"
+                            },
+                            "type": {
+                              "type": "string"
+                            },
+                            "code": {
+                                "type":  "string"
+                            },
+                            "validity": {
+                              "type":  "date"
+                            },
+                            "batch": {
+                              "type":  "string"
+                            },
+                            "unitOfMeasurement": {
+                              "type":  "string"
+                            }
+                        }
+                      }
+                    }
+                }
+            },
+              "responses": {
+                  "201": {
+                    "description": "Editado com sucesso !",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "example": {
+                            "_id": "642b8f5e11bd1d9db785cf8a",
+                            "product": {
+                                "_id": "64250c3aa8a0a4a81aa0dfe9",
+                                "nome": "Brahama",
+                                "valor": 3.5
+                            },
+                            "amount": 52,
+                            "type": "Insumo",
+                            "code": "1",
+                            "validity": "2023-04-01T00:00:00.000Z",
+                            "batch": "123",
+                            "unitOfMeasurement": "UND"
+                          }
+                      }
+                      }
+                    }
+                  }
+              }
+            },
+            "delete": {
+              "description": "Excluir um estoque",
+              "tags": ["Stock"],
+                "responses": {
+                    "201": {
+                      "description": "Excluido com sucesso !"
+                    }
+                }
+              }
+            },
+            "/table/": {
+              "get": {
+                  "description": "Listar o mesas",
+                  "tags": ["Table"],
+                  "parametres": {
+                      "in": "*",
+                      "name": "*",
+                      "type": "*/*"
+                  },
+                  "responses": {
+                      "200": {
+                          "content": {
+                              "application/json": {
+                                "schema": {
+                                  "type": "object",
+                                    "properties": {
+                                      "tableNumber": {
+                                        "type": "number"
+                                      },
+                                      "customerQuantity": {
+                                        "type": "number"
+                                      },
+                                      "status": {
+                                          "type":  "string"
+                                      }
+                                  },
+                                  "example":{
+                                      "_id": "642655ae09a2a9630caf8240",
+                                      "tableNumber": 1,
+                                      "customerQuantity": 2,
+                                      "status": "Dísponivel"
+                                    }
+                                  }
+                              }
+                          }
+                      }
+                  }
+              }
+            },
+            "/table/new": {
+                "post": {
+                  "description": "Criar um nova mesa",
+                  "tags": ["Table"],
+                  "requestBody": {
+                      "content": {
+                          "application/json": {
+                            "schema": {
+                              "type": "object",
+                              "properties": {
+                                "tableNumber": {
+                                  "type": "number"
+                                },
+                                "customerQuantity": {
+                                  "type": "number"
+                                },
+                                "status": {
+                                    "type":  "string"
+                                }
+                              }
+                            }
+                          }
+                      }
+                  },
+                "responses": {
+                    "201": {
+                      "description": "Salvo com sucesso !",
+                      "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example":{
+                                  "_id": "642655ae09a2a9630caf8240",
+                                  "tableNumber": 1,
+                                  "customerQuantity": 2,
+                                  "status": "Dísponivel"
+                                }
+                            }
+                        }
+                      }
+                    }
+                }
+            }
+          },
+          "/table/{id}": {
+            "post": {
+              "description": "Editar uma mesa",
+              "tags": ["Table"],
+              "requestBody": {
+                  "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "properties": {
+                            "tableNumber": {
+                              "type": "number"
+                            },
+                            "customerQuantity": {
+                              "type": "number"
+                            },
+                            "status": {
+                                "type":  "string"
+                            }
+                          }
+                        }
+                      }
+                  }
+              },
+                "responses": {
+                    "201": {
+                      "description": "Editado com sucesso !",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "type": "object",
+                            "example":{
+                              "_id": "642655ae09a2a9630caf8240",
+                              "tableNumber": 1,
+                              "customerQuantity": 2,
+                              "status": "Dísponivel"
+                            }
+                          }
+                        }
+                      }
+                    }
+                }
+              },
+              "delete": {
+                "description": "Excluir uma mesa",
+                "tags": ["Table"],
+                  "responses": {
+                      "201": {
+                        "description": "Excluido com sucesso !"
+                      }
+                  }
+                }
+              },
+        "/user/new": {
+            "post": {
+              "description": "Criar um Usuário",
+              "tags": ["User"],
+              "requestBody": {
+                  "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                            "properties": {
+                              "nome": {
+                                  "type": "string"
+                              },
+                              "userName": {
+                                  "type": "string"
+                              },
+                              "password": {
+                                "type": "string"
+                            },
+                            "perfil": {
+                              "type": "string"
+                          }
+                          }
+                        }
+                      }
+                  }
+              },
+            "responses": {
+                "201": {
+                  "description": "Usuário criado com sucesso !",
+                  "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "example": {
+                              "usuario": {
+                                "_id": "64581408d9daa0f68974eb36",
+                                "nome": "Matheus",
+                                "userName": "Matheus",
+                                "password": "$2b$12$ANbn1O9mPBcLaAiBY2wghOeemLNu4xb6zazACDPShE.KL5R0GXZ4i",
+                                "perfil": "Gerencial"
+                              }
+                            }
+                        }
+                    }
+                  }
+                }
+            }
+        }
+      },
+      "/user/login": {
+        "post": {
+          "description": "Fazer login",
+          "tags": ["User"],
+          "requestBody": {
+              "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                        "properties": {
+                          "userName": {
+                              "type": "string"
+                          },
+                          "password": {
+                              "type": "string"
+                          }
+                      }
+                    }
+                  }
+              }
+          },
+            "responses": {
+                "201": {
+                  "description": "Você está autenticado !",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "example": {
+                          "usuario": {
+                              "userName": "Matheus",
+                              "password": "123456",
+                              "_id": "645814875f9a86273064fcb6"
+                          },
+                          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VOYW1lIjoiTWF0aGV1cyIsImlkIjoiNjQ1ODE0ODc1ZjlhODYyNzMwNjRmY2I2IiwiaWF0IjoxNjgzNDk0MDIzfQ.ke_ZyRIdKfRbXUtGOV-Q40EB40DBbi1NKsIZsFMaiCs"
+                        }
+                     }
+                    }
+                  }
+                }
+            }
+          }
+        }
+    }
+}

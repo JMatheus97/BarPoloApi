@@ -8,6 +8,9 @@ import TableRoutes from './src/routes/TableRoutes';
 import StoreRoutes from './src/routes/StoreRoutes';
 import StockRoutes from './src/routes/StockRoutes';
 import EmployeeRoutes from './src/routes/EmployeeRoutes';
+import swaggerUI from 'swagger-ui-express';
+import swaggerDocument from './swagger.json';
+
 
 const app = express();
 
@@ -25,6 +28,8 @@ app.use(cors({ credentials: true, origin:  'http://localhost:3000'}));
 app.use(express.static('public'));
 
 //Routes
+
+app.use('/api-docs/', swaggerUI.serve, swaggerUI.setup(swaggerDocument))
 app.use('/user', UserRoutes);
 app.use('/product', ProductRoutes);
 app.use('/table', TableRoutes)
