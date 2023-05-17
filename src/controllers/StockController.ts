@@ -71,7 +71,7 @@ export class StockControler extends StockModel{
   // EDIT
   public async edit(req: Request, res: Response){
     const id: String = req.params.id;
-    const { amount, type, batch, unitOfMeasurement, validity } = req.body;
+    const { code, amount, type, batch, unitOfMeasurement, validity } = req.body;
 
     try{
       const stockExists = await verifyExistsStock(id);
@@ -83,6 +83,11 @@ export class StockControler extends StockModel{
     }
 
     const stock = new StockModel({ _id: id});
+
+    if(code !== undefined){
+      stock.code = code;
+    }
+
 
     if(amount !== undefined){
       stock.amount = amount;
@@ -106,12 +111,12 @@ export class StockControler extends StockModel{
 
     try {
     if(req.body.product !== undefined){
-      const products = await  verifyExistsProduct(req.body.product);
+      const products = await  verifyExistsProduct(req.body.product._id);
       if(products === null){
         return res.status(422).json({ message: "O produto informado não existe !"});
       }else {
         stock.product = products;
-
+        console.log(products)
         const stockEdit = await StockModel.findByIdAndUpdate({ _id: id}, {$set: stock}, {new:true}).populate([{"path": "product", "model": "Product"}])
         return res.status(201).json({ message: "Estoque editado com sucesso ! ", stockEdit})
       }
