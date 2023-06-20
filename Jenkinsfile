@@ -6,15 +6,5 @@ pipeline {
                 echo 'Gerando o build'
             }
         }
-        stage('Test') {
-            steps {
-                //
-            }
-        }
-        stage('Deploy') {
-            steps {
-                //
-            }
-        }
     }
 }
