@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh ‘npm config ls’
+                sh 'npm config ls'
             }
         }
     }
