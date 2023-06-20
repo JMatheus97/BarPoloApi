@@ -1,11 +1,14 @@
 pipeline {
     agent any
 
-    tools {nodejs "node"}
+    tools {
+        nodejs "node"
+    }
+
     stages {
         stage('Build') {
             steps {
-                sh 'npm --verison'
+                sh 'npm --version'
             }
         }
     }
