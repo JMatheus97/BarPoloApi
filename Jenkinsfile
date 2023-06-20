@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Gerando o build'
+                sh ‘npm config ls’
             }
         }
     }
